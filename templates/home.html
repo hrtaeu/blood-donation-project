@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .hero {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+        .hero-text {
+            font-size: 2.5rem;
+        }
+        .btn-container {
+            margin-top: 20px;
+        }
+        .card-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero text-center">
+        <div class="container">
+            <h1 class="hero-text mb-4">Welcome to the Blood Donation System</h1>
+            <p class="lead mb-4">Your journey to helping others starts here.</p>
+
+            <!-- If user is authenticated, redirect to the profile or homepage -->
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="btn btn-success btn-lg">Go to your profile</a>
+            <!-- If user is not authenticated, show login and registration options -->
+            {% else %}
+                <div class="btn-container">
+                    <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Login</a>
+                    <a href="{% url 'register' %}" class="btn btn-secondary btn-lg">Register</a>
+                </div>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="container text-center card-container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Login</h5>
+                        <p class="card-text">Already have an account? Log in to manage your blood donation requests and profile details.</p>
+                        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Register</h5>
+                        <p class="card-text">New to our platform? Register to start creating and managing your blood donation requests.</p>
+                        <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

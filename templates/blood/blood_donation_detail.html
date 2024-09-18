@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Blood Donation Detail{% endblock %}
+
+{% block content %}
+    <h1>Blood Donation Detail</h1>
+    <p><strong>User:</strong> {{ object.user }}</p>
+    <p><strong>Request Type:</strong> {{ object.request_type }}</p>
+    <p><strong>Blood Type:</strong> {{ object.blood_type }}</p>
+    <p><strong>Region:</strong> {{ object.region }}</p>
+    <p><strong>Province:</strong> {{ object.province }}</p>
+    <p><strong>Municipality:</strong> {{ object.municipality }}</p>
+    <p><strong>Description:</strong> {{ object.description }}</p>
+    <p><strong>Created At:</strong> {{ object.created_at }}</p>
+{% endblock %}

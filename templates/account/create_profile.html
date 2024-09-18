@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .hero {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+        .hero-text {
+            font-size: 2rem;
+        }
+        .form-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero text-center">
+        <div class="container">
+            <h1 class="hero-text mb-4">Create Your Profile</h1>
+            <p class="lead mb-4">Please fill out the form below to complete your profile.</p>
+        </div>
+    </header>
+
+    <div class="container form-container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Profile Information</h5>
+                        <form method="POST" action="{% url 'create_profile' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="first_name">First Name</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Last Name</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="weight">Weight (kg)</label>
+                                <input type="number" class="form-control" id="weight" name="weight" step="0.1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="height">Height (cm)</label>
+                                <input type="number" class="form-control" id="height" name="height" step="0.1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="region">Region</label>
+                                <select class="form-control" id="region" name="region" required>
+                                    <option value="">Select Region</option>
+                                    <option value="Region I">Region I</option>
+                                    <option value="Region III">Region III</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="province">Province</label>
+                                <select class="form-control" id="province" name="province" required>
+                                    <option value="">Select Province</option>
+                                    <!-- Options will be populated based on selected region -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="municipality">Municipality</label>
+                                <select class="form-control" id="municipality" name="municipality" required>
+                                    <option value="">Select Municipality</option>
+                                    <option value="Abra"></option>
+                                    <option value="Agusan Del Norte"></option>
+                                    <!-- Options will be populated based on selected province -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="blood_type">Blood Type</label>
+                                <select class="form-control" id="blood_type" name="blood_type" required>
+                                    <option value="">Select Blood Type</option>
+                                    <option value="A+">A+</option>
+                                    <option value="B+">B+</option>
+                                    <option value="O+">O+</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O-">O-</option>
+                                    <option value="AB-">AB-</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="availability">Availability</label>
+                                <select class="form-control" id="availability" name="availability" required>
+                                    <option value="">Select Availability</option>
+                                    <option value="True">Available</option>
+                                    <option value="False">Not Available</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for dynamic dropdowns -->
+    <script>
+        document.getElementById('region').addEventListener('change', function() {
+            var region = this.value;
+            var provinceSelect = document.getElementById('province');
+            var municipalitySelect = document.getElementById('municipality');
+
+            // Clear previous options
+            provinceSelect.innerHTML = '<option value="">Select Province</option>';
+            municipalitySelect.innerHTML = '<option value="">Select Municipality</option>';
+
+            if (region === 'Region I') {
+                provinceSelect.innerHTML += '<option value="Ilocos Norte">Ilocos Norte</option>';
+                provinceSelect.innerHTML += '<option value="Ilocos Sur">Ilocos Sur</option>';
+            } else if (region === 'Region III') {
+                provinceSelect.innerHTML += '<option value="Pampanga">Pampanga</option>';
+                provinceSelect.innerHTML += '<option value="Bulacan">Bulacan</option>';
+            }
+        });
+
+        document.getElementById('province').addEventListener('change', function() {
+            var province = this.value;
+            var municipalitySelect = document.getElementById('municipality');
+
+            // Clear previous options
+            municipalitySelect.innerHTML = '<option value="">Select Municipality</option>';
+
+            if (province === 'Pampanga') {
+                municipalitySelect.innerHTML += '<option value="Angeles">Angeles</option>';
+                municipalitySelect.innerHTML += '<option value="San Fernando">San Fernando</option>';
+            } else if (province === 'Bulacan') {
+                municipalitySelect.innerHTML += '<option value="Malolos">Malolos</option>';
+                municipalitySelect.innerHTML += '<option value="Meycauayan">Meycauayan</option>';
+            }
+        });
+    </script>
+</body>
+</html>

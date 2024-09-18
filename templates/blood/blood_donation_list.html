@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Blood Donation List{% endblock %}
+
+{% block content %}
+    <h1>Blood Donation Requests</h1>
+    <ul>
+        {% for donation in donations %}
+            <li>
+                <a href="{% url 'blood_donation_detail' donation.pk %}">
+                    {{ donation.user }} - {{ donation.request_type }} - {{ donation.blood_type }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

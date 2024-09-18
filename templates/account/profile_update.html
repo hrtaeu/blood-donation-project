@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Update Your Profile</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-group">
+                {{ form.first_name.label_tag(class="form-label") }}
+                {{ form.first_name|add_class:"form-control" }}
+                {{ form.first_name.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.last_name.label_tag(class="form-label") }}
+                {{ form.last_name|add_class:"form-control" }}
+                {{ form.last_name.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.weight.label_tag(class="form-label") }}
+                {{ form.weight|add_class:"form-control" }}
+                {{ form.weight.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.height.label_tag(class="form-label") }}
+                {{ form.height|add_class:"form-control" }}
+                {{ form.height.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.region.label_tag(class="form-label") }}
+                {{ form.region|add_class:"form-control" }}
+                {{ form.region.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.province.label_tag(class="form-label") }}
+                {{ form.province|add_class:"form-control" }}
+                {{ form.province.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.municipality.label_tag(class="form-label") }}
+                {{ form.municipality|add_class:"form-control" }}
+                {{ form.municipality.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.blood_type.label_tag(class="form-label") }}
+                {{ form.blood_type|add_class:"form-control" }}
+                {{ form.blood_type.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.availability.label_tag(class="form-label") }}
+                {{ form.availability|add_class:"form-check-input" }}
+                {{ form.availability.errors }}
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

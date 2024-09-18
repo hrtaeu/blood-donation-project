@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<h1>Admin Dashboard</h1>
+<h2>Blood Donation Requests</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Request Type</th>
+            <th>Blood Type</th>
+            <th>Region</th>
+            <th>Province</th>
+            <th>Municipality</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for request in blood_requests %}
+        <tr>
+            <td>{{ request.id }}</td>
+            <td>{{ request.request_type }}</td>
+            <td>{{ request.blood_type }}</td>
+            <td>{{ request.region }}</td>
+            <td>{{ request.province }}</td>
+            <td>{{ request.municipality }}</td>
+            <td>
+                <a href="{% url 'edit_blood_request' request.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'delete_blood_request' request.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Users</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>
+                <a href="{% url 'edit_user' user.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'delete_user' user.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
